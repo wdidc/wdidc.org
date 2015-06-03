@@ -14,3 +14,5 @@ The default web server is nginx. Configuration files for virtual hosts
 are stored in `/etc/nginx/sites-enabled/`
 
 ### user accounts
+
+Everyone belongs to the www-data group.
