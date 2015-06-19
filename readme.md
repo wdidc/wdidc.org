@@ -2,6 +2,16 @@
 
 ## Services
 
+### File server
+
+Visible at http://locker.wdidc.org/
+
+user: your username
+
+host: www.wdidc.org
+
+
+
 ### git
 
 Git repos are stored in `/home/git/`
