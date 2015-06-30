@@ -17,7 +17,7 @@ You may connect to this server via an SFTP client with your user account credent
 
 Git repos are stored in `/home/git/`
 
-Repositories can be cloned using the SSH protocol: `git clone git@wdidc.org:repo-name.git`
+Repositories can be cloned using the SSH protocol: `git clone git@git.wdidc.org:APIs/assignments.git`
 
 You can view existing repositories at http://git.wdidc.org/
 
