@@ -6,10 +6,11 @@
 
 Visible at http://locker.wdidc.org/
 
-user: your username
+You may connect to this server via an SFTP client with your user account credentials:
 
-host: www.wdidc.org
-
+- user: your username
+- host: www.wdidc.org
+- path: /var/www/locker.wdidc.org/
 
 
 ### git
