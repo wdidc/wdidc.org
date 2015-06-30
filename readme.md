@@ -20,6 +20,12 @@ Repositories can be cloned using the SSH protocol: `git clone git@wdidc.org:repo
 
 You can view existing repositories at http://git.wdidc.org/
 
+To create a new repo, initialize a bare repository in the git user's home directory, or:
+
+```
+ssh git@git.wdidc.org "git init --bare name-of-repo.git"
+```
+
 ### web server
 
 The default web server is nginx. Configuration files for virtual hosts
