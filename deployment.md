@@ -92,18 +92,16 @@ If you get "502 Bad Gateway", application server is not running.
 
 ### Configure post-update hook
 
-    $ cd /home/git/name-of-repo.git 
-    $ mv post-update.example post-update
+    $ cd /home/git/name-of-repo.git/hooks/
+    $ mv post-update.sample post-update
     $ chmod +x post-update
 
 ```bash
- 
+# post-update 
 cd /var/www/path/to/app
 unset GIT_DIR
 git pull origin master
 sudo service unicorn_name_of_app restart
+
+exec git update-server-info
 ```
-
-
-
-
