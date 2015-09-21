@@ -2,6 +2,8 @@
 
 ## Services
 
+See [the List](https://docs.google.com/spreadsheets/d/1whsU1PPMqAosbNeNI6LZS4V13FTfGyyTTcj8yYO6ezI/edit#gid=0)
+
 ### File server
 
 Visible at http://locker.wdidc.org/
