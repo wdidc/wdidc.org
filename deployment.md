@@ -14,7 +14,9 @@
     $ cd /var/www
     $ git clone ~/name-of-repo.git
 
-## Decide on an application server
+## Deploying Rails apps
+
+### Decide on an application server
 
 Use `forever` for node apps.
 
@@ -22,7 +24,7 @@ Use `unicorn` for rack-based apps.
 
 Pick a port to serve on in whatever configuration file is necessary for application server
 
-## Try starting your app
+### Try starting your app
 
     $ bundle install && rake db:create && rake db:migrate ...
     $ unicorn -c path/to/config/unicorn.rb -E development -D 
@@ -30,7 +32,7 @@ Pick a port to serve on in whatever configuration file is necessary for applicat
 If directory not writeable, make sure directory exists and permissions allow
 the git user to write to it.
 
-## Configure a subdomain
+### Configure a subdomain
 
     cd /etc/nginx/sites-enabled/
 
@@ -56,7 +58,7 @@ server{
 }
 ```
 
-## Configure Proxy Server
+### Configure Proxy Server
 
     $ cd /etc/nginx/
     $ sudo vi nginx.conf
@@ -67,7 +69,7 @@ upstream name_of_app{
 }
 ```
     
-## Restart Nginx
+### Restart Nginx
 
     $ sudo service nginx reload
 
@@ -75,22 +77,22 @@ upstream name_of_app{
 
     $ sudo nginx -t
 
-## Visit site in browser
+### Visit site in browser
 
 If you get "502 Bad Gateway", application server is not running.
 
-## Other Errors?
+### Other Errors?
 
     $ sudo tail /var/log/nginx/error.log
     $ tail /path/to/app/tmp/unicorn.log
 
-## Automate deployment
+### Automate deployment
 
-### Automate unicorn start and stop
+#### Automate unicorn start and stop
 
     $ sudo cp /etc/init.d/unicorn_something 
 
-### Configure post-update hook
+#### Configure post-update hook
 
     $ cd /home/git/name-of-repo.git/hooks/
     $ mv post-update.sample post-update
@@ -105,3 +107,37 @@ sudo service unicorn_name_of_app restart
 
 exec git update-server-info
 ```
+
+## Deploying Node Apps
+
+As git user...
+
+- create bare git repo
+- clone bare to /var/www as url
+- cd to that folder
+- install dependencies `npm install`
+- try it out `npm start`
+- forever start app.js
+- add forever start to crontab
+  - `crontab -e`
+  - `@reboot /usr/local/bin/forever start /var/www...`
+- configure virtual host
+- cd /etc/nginx/sites-enabled
+- sudo vim subdomain.wdidc.org
+
+
+```
+server{
+  listen 80;
+  server_name subdomain.wdidc.org;
+  root /var/www/domain/public;
+  location / {
+    proxy_pass http://localhost:PORT/; 
+    # whatever port the app is runnin on
+  }
+}
+```
+- sudo service nginx reload
+- check it out!
+- sudo nginx -t
+
